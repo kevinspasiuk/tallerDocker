@@ -1,0 +1,23 @@
+version: '2'
+services:
+  app1:
+    image: nicopaez/password-api:latest
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: "3000"
+
+  app2:
+    image: nicopaez/password-api:latest
+    ports:
+      - "3001:3001"
+    environment:
+      PORT: "3001"
+
+  nginx: 
+    build: ./nginx
+    ports:
+    - "4567:80"
+    depends_on: 
+      - app1
+      - app2
