@@ -1,4 +1,4 @@
-# Taller Docker ej04
+# Taller Docker ej06
 
 Resolución del ejercicio 06 de taller docker 2023
 
@@ -33,14 +33,12 @@ $ docker build -t kevinspasiuk/tallerdocker-ej06 .
 4. Se corrió la imagen
 
 ```bash
-$ docker run -p 4567:8080 kevinspasiuk/tallerdocker-ej04
+$ docker run -p 4567:8080 kevinspasiuk/tallerdocker-ej06
 ```
-![image info](./img/ejercicio04.PNG)
 
 5.  Se subió la imagen a docker hub 
 
 ```bash
-$ docker image push kevinspasiuk/tallerdocker-ej04:latest
+$ docker image push kevinspasiuk/tallerdocker-ej06:latest
 ```
-
-https://hub.docker.com/repository/docker/kevinspasiuk/tallerdocker-ej04/general
+Link a la imagen en dockerhub: https://hub.docker.com/repository/docker/kevinspasiuk/tallerdocker-ej06/general
