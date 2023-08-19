@@ -1,19 +1,25 @@
-# Taller Docker ej09
+# Taller Docker ej10
 
-Resolución del ejercicio 09 de taller docker 2023
+Resolución del ejercicio 10 de taller docker 2023
 
 ## Consigna
 
-Reescribir el descriptor yml de ejercicio 7 de acuerdo a la especificación de compose v2 y contemplando:
-Extraer la password de la base de datos a un secret
-Crear dos networks una exclusivamente "interna" para los servicios db & web y otra exclusivamente para web
-Entregar el compose.yaml y demás archivos que consideres necesario en una carpeta ejercicio09.
+Investigar y explicar con tus propias palabras las diferencias de las instrucciones CMD y ENTRYPOINT. 
 
 ## Resolución
 
-1. Para usar secret para la DB, encontré en la documentación que se puede especificar la contraseña en el env var *POSTGRES_PASSWORD_FILE*, se siguió la documentación de especificación de secrets: https://docs.docker.com/compose/use-secrets/
+1. CMD: indica el comando a ejecutar cuando se incia el contenedor a partir de una imagen. El objetivo principal de CMS es proveer "defaults" para un contenedor ejectuable.
+La sintaxis es:
 
-    No pude usar el mismo secret para la conexión de la db en la web api, así que terminé usando un env var como lo especifica la documentación: https://docs.docker.com/compose/environment-variables/set-environment-variables/
+```bash
+CMD ["comando", "argumento1", "argumento2", ...]
+```
 
-2. Para las networks, seguí la siguiente documentación: https://docs.docker.com/compose/networking/ 
-    No usé ningún custom driver.
+2. ENTRYPOINT: se utiliza para establecer un comando base o un script que se ejecutará cada vez que se inicie un contenedor. La diferencia es que CMD se utiliza para dar arugmentos adicionales. Un ejemplo sería usar entrypont para establecer el comando python y CMD para indicar la app a correr:
+
+```bash
+ENTRYPOINT ["python"]
+CMD ["app.py"]
+```
+
+El comando ENTRYPOINT establece un comando base constante que se ejecuta siempre, en cambio CMD establece un comando predeterminado que puede ser reemplazado al ejecutar el contenedor.
