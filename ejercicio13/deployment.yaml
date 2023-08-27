@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jobvacancy
+  labels:
+    app: jobvacancy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jobvacancy
+  template:
+    metadata:
+      labels:
+        app: jobvacancy
+    spec:
+      containers:
+      - name: db
+        image: postgres:14.4-alpine
+        ports:
+        - containerPort: 5432
+        envFrom:
+          - configMapRef:
+              name: jobvacancyconfig-db
+      - name: webapp
+        image: nicopaez/jobvacancy-ruby:1.0.5
+        envFrom:
+          - configMapRef:
+              name: jobvacancyconfig
+          - secretRef:
+              name: jobvacancysecret
